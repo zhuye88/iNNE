@@ -3,49 +3,45 @@ load('Isolet.mat')
 % data are attribute values
 % class is label where 1 represents anomaly
 
-
-auc = zeros(10,1); 
 data = normalize(data);
 
 rounds = 10; % rounds of repeat
 %% iNNE
 psi = 4; % subsample size
-t = 100; % number of isolation trees
+t = 100; % ensemble size
 
 auc = zeros(rounds, 1);
 for r = 1:rounds
- %   pause(r/100)
+    %   pause(r/100)
     %  disp(['rounds ', num2str(r), ':']);
     %  tic
     Score= iNNE(data,data,t,psi );
     %  toc
     auc(r) = Measure_AUC(Score, class);
-    % [~,~,~,auc(r)] = perfcurve(logical(ADLabels),Score,'true');
+    % [~,~,~,auc(r)] = perfcurve(logical(class),Score,'true');
     %   disp(['auc = ', num2str(auc(r)), '.']);
-    
 end
 
-%auc'
-iNNE_results = [mean(auc), std(auc)] 
+%auc
+iNNE_results = [mean(auc), std(auc)]
 
 
 %% iForest
-NumTree = 100;
-NumSub = 2^8;; % subsample size
-t = 100; % number of isolation trees
+NumTree = 100; % number of isolation trees
+NumSub = 2^8; % subsample size
 
 auc = zeros(rounds, 1);
-for r = 1:rounds 
-   % pause(r/100) 
+for r = 1:rounds
+    % pause(r/100)
     rseed(r) = sum(100 * clock);
-    Forest = IsolationForest(data, NumTree,NumSub,rseed(r)); 
+    Forest = IsolationForest(data, NumTree,NumSub,rseed(r));
     [Mass, ~] = IsolationEstimation(data, Forest);
     Score = - mean(Mass, 2);
-    iFauc(r) = Measure_AUC(Score, class); 
+    iFauc(r) = Measure_AUC(Score, class);
 end
 
-%auc'
-iForest_results = [mean(iFauc), std(iFauc)] 
+%auc
+iForest_results = [mean(iFauc), std(iFauc)]
 
 %% LOF
 k=0.1*ceil(size(data,1));
@@ -55,18 +51,16 @@ LOF_result = Measure_AUC(Score, class)
 
 %% SP
 
- NumSub =10;
- for r = 1:rounds
- %pause(r/100)
- rng('shuffle','multFibonacci')
- 
- CurtData=data(randperm(size(data,1),NumSub),:);
- SimMatrix=pdist2(data,CurtData,'minkowski',2);
- Score=min(SimMatrix')';
- 
- auc(r)=Measure_AUC(Score, class);
-% disp(['auc = ', num2str(auc(r)), '.']); 
- end
+NumSub =10;
+for r = 1:rounds
+    %pause(r/100)
+    rng('shuffle','multFibonacci')    
+    CurtData=data(randperm(size(data,1),NumSub),:);
+    SimMatrix=pdist2(data,CurtData,'minkowski',2);
+    Score=min(SimMatrix')';    
+    auc(r)=Measure_AUC(Score, class);
+    % disp(['auc = ', num2str(auc(r)), '.']);
+end
 
- SP_results = [mean(auc), std(auc)]
- 
+%auc
+SP_results = [mean(auc), std(auc)]
