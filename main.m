@@ -7,7 +7,7 @@ data = normalize(data);
 
 rounds = 10; % rounds of repeat
 %% iNNE
-psi = 4; % subsample size
+psi = 4; % subsample size psi can be [2 4 8 16 32 64 128 256]
 t = 100; % ensemble size
 
 auc = zeros(rounds, 1);
@@ -28,7 +28,7 @@ iNNE_results = [mean(auc), std(auc)]
 
 %% iForest
 NumTree = 100; % number of isolation trees
-NumSub = 2^8; % subsample size
+NumSub = 2^8; % subsample size NumSub can be [2 4 8 16 32 64 128 256]
 
 auc = zeros(rounds, 1);
 for r = 1:rounds
