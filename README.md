@@ -3,7 +3,7 @@ Source code of Isolation‐based anomaly detection
 
 These functions implement an Isolation‐based anomaly detection iNNE, proposed by Bandaragoda, Tharindu R., et al. "Isolation‐based anomaly detection using nearest‐neighbor ensembles" Computational Intelligence (2018). https://onlinelibrary.wiley.com/doi/abs/10.1111/coin.12156
 
-Written by Ye Zhu, Deakin University, Nov 2020, version 1.1
+Written by Ye Zhu, Deakin University, Nov 2020, version 1.2
 
 This software is under GNU General Public License version 3.0 (GPLv3)
 
