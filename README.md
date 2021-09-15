@@ -1,4 +1,4 @@
-# iNNE
+# Isolation‐based anomaly detection using nearest‐neighbor ensembles (iNNE)
 Source code of Isolation‐based anomaly detection
 
 These functions implement an Isolation‐based anomaly detection iNNE, proposed by Bandaragoda, Tharindu R., et al. "Isolation‐based anomaly detection using nearest‐neighbor ensembles" Computational Intelligence (2018). https://onlinelibrary.wiley.com/doi/abs/10.1111/coin.12156
