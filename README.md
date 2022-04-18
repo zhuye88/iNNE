@@ -7,6 +7,8 @@ Written by Ye Zhu, Deakin University, Nov 2020, version 1.2
 
 This software is under GNU General Public License version 3.0 (GPLv3)
 
+A python version can be found at https://inne.readthedocs.io/
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 Abstract of the paper
