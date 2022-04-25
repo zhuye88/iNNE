@@ -28,7 +28,7 @@ for i=1:t
     [~,II]=min(Cradius,[],1); % find cnn(x) 
     Cratio=ratioindex(II);
     Cratio(sum(I,1)==0)=1;
-    Iso(:,i)=Cratio;                     
+    Iso(:,i)=Cratio;
 end
 
 Iscore=mean(Iso,2);
